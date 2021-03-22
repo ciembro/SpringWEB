@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +18,8 @@ public class Task {
 
     @Id
     @GeneratedValue
+    @NotNull
+    @Column(name = "id", unique = true)
     private Long id;
 
     @Column(name = "name")
