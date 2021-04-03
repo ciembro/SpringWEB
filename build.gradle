@@ -26,9 +26,9 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
 //	runtimeOnly 'mysql:mysql-connector-java'
-	runtimeOnly 'org:postgresql:postgresql'
+//	runtimeOnly 'org:postgresql:postgresql'
 
-//	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 //	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
