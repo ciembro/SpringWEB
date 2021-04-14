@@ -26,9 +26,11 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:1.18.12'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
-//	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'mysql:mysql-connector-java'
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 //	runtimeOnly 'org:postgresql:postgresql'
-	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+//	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 //	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
