@@ -18,7 +18,7 @@ public class SimpleEmailService {
 
     public void send(final Mail mail) {
         log.info("Starting email preparation...");
-        try{
+        try {
             SimpleMailMessage mailMessage = createMailMessage(mail);
             javaMailSender.send(mailMessage);
             log.info("Email has been sent");
@@ -36,7 +36,7 @@ public class SimpleEmailService {
         if (Optional.ofNullable(mail.getToCc()).isPresent()){
             mailMessage.setCc(mail.getToCc());
         }
-
+        log.info("mail created");
         return mailMessage;
     }
 
