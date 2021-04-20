@@ -21,13 +21,11 @@ public class TrelloController {
 
     @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-        log.info("fetching boards");
         return trelloService.fetchTrelloBoards();
     }
 
     @PostMapping("createTrelloCard")
     public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        log.info("creating new card");
         return trelloService.createTrelloCard(trelloCardDto);
     }
 }

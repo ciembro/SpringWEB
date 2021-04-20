@@ -36,7 +36,6 @@ public class SimpleEmailService {
         if (Optional.ofNullable(mail.getToCc()).isPresent()){
             mailMessage.setCc(mail.getToCc());
         }
-        log.info("mail created");
         return mailMessage;
     }
 

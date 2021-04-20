@@ -8,9 +8,7 @@ import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.client.TrelloClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 import static java.util.Optional.ofNullable;
 
 @Service
@@ -26,7 +24,6 @@ public class TrelloService {
     }
 
     public CreatedTrelloCard createTrelloCard(final TrelloCardDto trelloCardDto) {
-        System.out.println(adminConfig.getAdminMail());
         CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
         ofNullable(newCard).ifPresent(card -> emailService.send(Mail.builder()
                 .mailTo(adminConfig.getAdminMail())
