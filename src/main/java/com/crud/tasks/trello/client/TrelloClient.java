@@ -24,8 +24,6 @@ public class TrelloClient {
     private final RestTemplate restTemplate;
     private final TrelloConfig trelloConfig;
 
-
-
     public List<TrelloBoardDto> getTrelloBoards(){
 
         try {
