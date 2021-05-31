@@ -2,6 +2,7 @@ package com.crud.tasks.service;
 
 import com.crud.tasks.config.AdminConfig;
 import com.crud.tasks.domain.CreatedTrelloCardDto;
+import com.crud.tasks.domain.Mail;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.trello.client.TrelloClient;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -48,6 +48,12 @@ class TrelloServiceTest {
 
         when(trelloClient.createNewCard(cardDto)).thenReturn(createdCardDto);
         when(adminConfig.getAdminMail()).thenReturn("test_admin@test.com");
+        Mail mail = Mail.builder()
+                .mailTo("test@test.com")
+                .subject("test")
+                .message("Test message")
+                .toCc("test22@test.com")
+                .build();
 
         //when
         CreatedTrelloCardDto newCard = trelloService.createTrelloCard(cardDto);
