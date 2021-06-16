@@ -32,6 +32,8 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 //	runtimeOnly 'org:postgresql:postgresql'
 //	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 //	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
