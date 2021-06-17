@@ -13,8 +13,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -26,13 +24,31 @@ public class SimpleEmailService {
     private final JavaMailSender javaMailSender;
     private final Logger LOGGER = LoggerFactory.getLogger(SimpleEmailService.class);
 
-    private MimeMessagePreparator createMimeMessage(final Mail mail){
+    private MimeMessagePreparator createMimeMessageOnCardCreated(final Mail mail){
         return mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
             messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
         };
+    }
+
+    private MimeMessagePreparator createMimeMessageTasksDaily(final Mail mail){
+        return mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setTo(mail.getMailTo());
+            messageHelper.setSubject(mail.getSubject());
+            messageHelper.setText(mailCreatorService.buildTasksDailyEmail(mail.getMessage()), true);
+        };
+    }
+
+    public void sendTasksDaily(final Mail mail){
+        try {
+            javaMailSender.send(createMimeMessageTasksDaily(mail));
+            LOGGER.info("Email has been sent.");
+        } catch (MailException e) {
+            log.error("Failed to process email sending: " + e.getMessage(), e);
+        }
     }
 
     private SimpleMailMessage createMailMessage(final Mail mail){
@@ -46,7 +62,7 @@ public class SimpleEmailService {
 
     public void send(final Mail mail){
         try {
-            javaMailSender.send(createMimeMessage(mail));
+            javaMailSender.send(createMimeMessageOnCardCreated(mail));
             LOGGER.info("Email has been sent.");
         } catch (MailException e) {
             log.error("Failed to process email sending: " + e.getMessage(), e);
