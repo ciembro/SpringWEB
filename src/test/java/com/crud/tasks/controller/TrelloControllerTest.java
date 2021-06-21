@@ -19,9 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringJUnitWebConfig
@@ -41,7 +39,7 @@ class TrelloControllerTest {
         //when&then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/v1/trello/getTrelloBoards")
+                        .get("/v1/trello/boards")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is(200)) // or isOk()
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
@@ -55,7 +53,7 @@ class TrelloControllerTest {
         when(trelloFacade.fetchTrelloBoards()).thenReturn(trelloBoards);
         //when&then
         mockMvc.perform(MockMvcRequestBuilders
-                    .get("/v1/trello/getTrelloBoards")
+                    .get("/v1/trello/boards")
                     .contentType(MediaType.APPLICATION_JSON))
                 //trello board fields
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
@@ -84,7 +82,7 @@ class TrelloControllerTest {
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/v1/trello/createTrelloCard")
+                        .post("/v1/trello/cards")
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
